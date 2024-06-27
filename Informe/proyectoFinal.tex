@@ -1,0 +1,534 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{mathpazo}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+%\usepackage{minted}
+%\usemintedstyle{emacs}
+\usepackage{url}
+\usepackage{ctable}
+\usepackage{float}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{makecell}
+\usepackage{hyperref}
+\usepackage{comment}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+}
+\newcommand{\DNoise}{n_d}
+
+\newcommand{\Est}[1]{\hat{#1}}
+\newcommand{\Test}[1]{\expandafter\hat#1}
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+    
+\begin{document}
+\title{\bf{Proyecto final Fundamentos}}
+%{\footnotesize \textsuperscript{*}}
+
+\author{\IEEEauthorblockN{
+Bejarano Mayta Andrea}
+\IEEEauthorblockA{\textit{Escuela de Física} \\
+\textit{Universidad Nacional de Ingeniería}\\
+Lima, Per\'u \\
+\texttt{andrea.bejarano.m@uni.pe}}
+\and
+\IEEEauthorblockN{ 
+Reyna Muñoz Paul}
+\IEEEauthorblockA{\textit{Escuela de Física} \\
+\textit{Universidad Nacional de Ingeniería}\\
+Lima, Perú \\
+\texttt{paul.reyna.m@uni.pe}}
+\and
+\IEEEauthorblockN{ 
+Ruiz Elias Arom}
+\IEEEauthorblockA{\textit{Escuela de Física} \\
+\textit{Universidad Nacional de Ingeniería}\\
+Lima, Perú \\
+\texttt{arom.ruiz.e@uni.pe}}}
+
+\maketitle
+
+\begin{abstract}
+Este informe presenta una serie de problemas resueltos utilizando el lenguaje de programación Python. El documento completo cubre varios conceptos y técnicas fundamentales de Python, incluidas funciones, cadenas, archivos, diccionarios, clases, además de un pequeño uso de las librerías numpy, matplotlib y pandas para el manejo de datos. Cada pregunta está diseñada para aumentar la comprensión de los conceptos y va acompañada de una explicación detallada del método utilizado para obtener la solución. Además, cada solución incluye el código fuente completo, lo que proporciona una guía práctica para cualquiera que busque mejorar sus habilidades de programación en Python. Este informe está dirigido a estudiantes y profesionales que quieran profundizar en el desarrollo de soluciones algorítmicas de alto rendimiento utilizando Python.
+
+\vspace{0.2cm}
+
+
+    
+\end{abstract}
+
+\section{Introducción}
+
+En el presente informe se abordan una serie de ejercicios resueltos utilizando Python, enfocándose en diversas áreas clave de este lenguaje de programación. A lo largo del documento, se explorarán conceptos fundamentales como el uso de funciones, manipulación de cadenas, gestión de archivos, manejo de diccionarios, y la programación orientada a objetos con clases, además, se incluirán secciones dedicadas a la generación de números aleatorios y al análisis de datos utilizando la biblioteca pandas.
+
+Python es conocido por su simplicidad y legibilidad, lo que lo convierte en una excelente opción tanto para principiantes como para desarrolladores experimentados. A diferencia de C++, Python es un lenguaje interpretado y de tipado dinámico, lo que significa que no requiere la declaración explícita de tipos de variables y permite una sintaxis más concisa y fácil de leer. En comparación, C++ es un lenguaje compilado y de tipado estático, lo que puede resultar en un código más complejo y detallado, pero también en una ejecución más rápida y eficiente en términos de rendimiento.
+
+Las funciones en Python permiten la modularización y organización del código. Se definen con la palabra clave \texttt{def}, a diferencia de C++, donde se requiere una definición explícita del tipo de retorno y de los parámetros. La manipulación de cadenas en Python es simple gracias a sus métodos integrados, mientras que en C++ puede ser más complejo debido al uso de punteros y bibliotecas adicionales como \texttt{string.h}. En cuanto a la gestión de archivos, Python facilita las operaciones con la declaración \texttt{with} y el manejo automático de la apertura y cierre de archivos. En C++, se utilizan las clases \texttt{ifstream} y \texttt{ofstream} de la biblioteca estándar, que requieren un manejo más explícito.
+
+El manejo de diccionarios en Python, que son equivalentes a los mapas en C++ (\texttt{std::map}), es más intuitivo y sencillo. Python soporta la programación orientada a objetos de manera accesible, con una sintaxis clara para la definición de clases y la implementación de herencia múltiple y métodos especiales. En C++, aunque también se soporta la orientación a objetos, la sintaxis puede ser más compleja y detallada. La generación de números aleatorios en Python es sencilla con el módulo \texttt{random}, mientras que en C++ se utiliza la biblioteca \texttt{<random>}, que puede ser más complicada de manejar. El análisis de datos con pandas en Python es extremadamente poderoso y flexible, y no tiene una biblioteca estándar equivalente en C++, lo que hace a Python la opción preferida para tareas de análisis de datos debido a su simplicidad y eficacia.
+
+Este informe no solo busca proporcionar una comprensión teórica de los temas abordados, sino también ilustrar las diferencias prácticas y sintácticas entre Python y C++. A través de la combinación de teoría y práctica, se espera que el lector desarrolle una comprensión sólida y habilidades aplicables en el desarrollo de software y análisis de datos con Python, apreciando también las ventajas y desventajas de Python en comparación con C++ en distintos contextos.
+
+
+
+
+\section{Marco Teórico}
+
+
+
+    \subsection{Funciones en Python}
+Las funciones en Python son bloques de código reutilizables que permiten la modularización y la organización del programa. Se definen utilizando la palabra clave \texttt{def} seguida del nombre de la función y paréntesis que pueden incluir parámetros. Las funciones pueden devolver valores usando la palabra clave \texttt{return}. El uso de funciones mejora la legibilidad del código y facilita su mantenimiento y reutilización.
+
+\begin{verbatim}
+def funcion(parametro1, parametro2):
+    resultado = parametro1 + parametro2
+    return resultado
+\end{verbatim}
+
+Además de las funciones definidas por el usuario, Python cuenta con una amplia gama de funciones integradas que permiten realizar operaciones comunes de forma eficiente, como \texttt{len()}, \texttt{sum()}, \texttt{max()}, entre otras.
+
+    \subsection{Cadenas en Python}
+Las cadenas (o strings) son secuencias de caracteres y se representan utilizando comillas simples o dobles. Python ofrece una amplia variedad de métodos para manipular cadenas, como \texttt{split()}, que divide una cadena en una lista de subcadenas, \texttt{join()}, que une una lista de subcadenas en una sola cadena, y \texttt{replace()}, que permite reemplazar partes de la cadena con otra subcadena. La manipulación de cadenas es esencial en el procesamiento de textos y en la construcción de interfaces de usuario.
+
+\begin{verbatim}
+cadena = "Hola mundo"
+print(cadena.upper())  # "HOLA MUNDO"
+\end{verbatim}
+
+    \subsection{Archivos en Python}
+Python permite la manipulación de archivos mediante el uso de funciones integradas como \texttt{open()}. Los archivos pueden abrirse en diferentes modos, como lectura (\texttt{r}), escritura (\texttt{w}) y adición (\texttt{a}). La lectura de archivos permite extraer datos almacenados, mientras que la escritura y la adición permiten almacenar datos de manera persistente.
+
+\begin{verbatim}
+with open('archivo.txt', 'r') as archivo:
+    contenido = archivo.read()
+\end{verbatim}
+
+El uso de la declaración \texttt{with} asegura que el archivo se cierre correctamente después de que se complete la operación, lo que previene posibles errores y fugas de memoria.
+
+    \subsection{Diccionarios en Python}
+Los diccionarios son colecciones desordenadas de pares clave-valor. Se definen utilizando llaves (\texttt{\{\}}) y permiten el acceso rápido a los valores mediante sus claves. Los diccionarios son extremadamente útiles para almacenar datos relacionados, como la información de un usuario o las configuraciones de una aplicación.
+
+\begin{verbatim}
+diccionario = {'clave1': 'valor1', 
+'clave2': 'valor2'}
+print(diccionario['clave1'])  # "valor1"
+\end{verbatim}
+
+Python ofrece varios métodos para manipular diccionarios, como \texttt{keys()}, \texttt{values()} y \texttt{items()}, que permiten acceder a las claves, valores y pares clave-valor del diccionario, respectivamente.
+
+    \subsection{Clases en Python}
+Python es un lenguaje orientado a objetos y permite la creación de clases, que son plantillas para crear objetos. Las clases encapsulan datos y comportamientos en una sola estructura. Se definen utilizando la palabra clave \texttt{class}. El uso de clases facilita la creación de programas más complejos y estructurados.
+
+\begin{verbatim}
+class Clase:
+    def __init__(self, atributo1):
+        self.atributo1 = atributo1
+    
+    def metodo(self):
+        return self.atributo1
+
+objeto = Clase('valor')
+print(objeto.metodo())  # "valor"
+\end{verbatim}
+
+Las clases pueden tener métodos y atributos. Los métodos definen comportamientos y los atributos almacenan el estado de un objeto. Además, Python soporta herencia, lo que permite crear nuevas clases basadas en clases existentes, facilitando la reutilización y extensión del código.
+
+\subsection{Generación de Números Aleatorios en Python}
+La generación de números aleatorios en Python se logra utilizando el módulo \texttt{random}, que proporciona una variedad de funciones para generar números aleatorios. Estas funciones pueden ser utilizadas en aplicaciones que requieren elementos de aleatoriedad, como simulaciones, juegos y pruebas estadísticas.
+
+\begin{verbatim}
+import random
+
+numero_aleatorio = random.randint(1, 10)
+print(numero_aleatorio)  # Número entero 
+aleatorio entre 1 y 10
+\end{verbatim}
+
+El módulo \texttt{random} también incluye funciones como \texttt{random()}, que genera un número de punto flotante aleatorio entre 0 y 1, y \texttt{choice()}, que selecciona un elemento aleatorio de una secuencia.
+
+\subsection{Análisis de Datos con pandas}
+Pandas es una biblioteca poderosa y flexible para el análisis de datos en Python. Proporciona estructuras de datos fáciles de usar y de alto rendimiento, como DataFrame, que permite la manipulación y el análisis de datos tabulares. Con pandas, es posible realizar operaciones como la limpieza de datos, la transformación de datos y el análisis exploratorio de datos.
+
+\begin{verbatim}
+import pandas as pd
+
+datos = {'Nombre': ['Ana', 'Luis', 'Pedro'
+], 'Edad': [28, 34, 29]}
+df = pd.DataFrame(datos)
+print(df)
+\end{verbatim}
+
+Pandas ofrece una amplia gama de funciones y métodos para manipular datos, como \texttt{groupby()}, que permite agrupar datos, y \texttt{merge()}, que permite combinar DataFrames. Estas capacidades hacen de pandas una herramienta esencial para el análisis de datos en Python.
+
+
+\section{Desarrollo}
+
+A continuación el desarrollo
+
+\subsection{Parte 1-Funciones}
+
+En esta sección se presenta un código en Python que calcula el factorial de un número ingresado por el usuario utilizando una función recursiva. A continuación se describe y explica cada parte del código.
+
+\begin{verbatim}
+def factorial(n): 
+    if n == 0:
+        return 1
+    else:
+        return n * factorial(n-1)
+\end{verbatim}
+
+Se define una función llamada \texttt{factorial} que toma un parámetro \texttt{n}. La función utiliza un enfoque recursivo para calcular el factorial del número. La condición base de la recursión es que si \texttt{n} es igual a 0, la función retorna 1. Esta condición se basa en el hecho de que el factorial de 0 es 1 (\(0! = 1\)). Si \texttt{n} no es 0, la función retorna el producto de \texttt{n} y la llamada recursiva a \texttt{factorial(n-1)}, lo que efectivamente descompone el problema en subproblemas más pequeños hasta alcanzar la condición base.
+
+\begin{verbatim}
+n = input("Enter a number: ")  
+n = int(n)  
+\end{verbatim}
+
+El programa solicita al usuario que ingrese un número utilizando la función \texttt{input()}. La entrada del usuario se convierte a un entero utilizando la función \texttt{int()}, ya que la función \texttt{input()} retorna una cadena de caracteres.
+
+\begin{verbatim}
+k = factorial(n)  
+print(k)  
+\end{verbatim}
+
+La variable \texttt{k} almacena el resultado de la llamada a la función \texttt{factorial()} con el número ingresado por el usuario. Finalmente, el programa imprime el valor de \texttt{k}, que es el factorial del número ingresado.
+
+Este código es un ejemplo clásico de cómo se puede utilizar la recursión para resolver problemas en programación. La recursión es una técnica en la que una función se llama a sí misma para resolver subproblemas similares al problema original. En este caso, el cálculo del factorial de un número es una aplicación directa de la recursión. El uso de la recursión hace que el código sea más conciso y fácil de entender, aunque es importante tener en cuenta las limitaciones de recursión, como el límite de profundidad de recursión en Python, que puede ser un factor limitante para números muy grandes.
+
+El código sigue un flujo lógico claro: solicita al usuario un número, calcula el factorial de ese número utilizando una función recursiva, y luego imprime el resultado. Esto ilustra cómo se puede combinar la entrada del usuario, el procesamiento recursivo y la salida de datos en un programa sencillo pero efectivo en Python.
+
+
+\subsection{Parte 1-Cadenas}
+
+En esta sección se presenta un código en Python que invierte una cadena de caracteres ingresada, utilizando una función iterativa. A continuación se describe y explica cada parte del código.
+
+\begin{verbatim}
+def invertir_cadena(cadena):
+    cadena_invertida = "" 
+    for caracter in cadena:
+        cadena_invertida = caracter + 
+        cadena_invertida
+    return cadena_invertida
+\end{verbatim}
+
+Se define una función llamada \texttt{invertir\_cadena} que toma un parámetro \texttt{cadena}. Dentro de la función, se inicializa una variable \texttt{cadena\_invertida} como una cadena vacía. Luego, se utiliza un bucle \texttt{for} para iterar a través de cada carácter en la cadena original. En cada iteración, el carácter actual (\texttt{caracter}) se antepone a \texttt{cadena\_invertida}. De esta forma, se construye la cadena invertida carácter por carácter. Finalmente, la función retorna la cadena invertida.
+
+\begin{verbatim}
+# Ejemplo de uso
+cadena_original = "Hola, mundo!"
+cadena_invertida = invertir_cadena
+(cadena_original)
+print(cadena_invertida)
+\end{verbatim}
+
+Se proporciona un ejemplo de uso de la función \texttt{invertir\_cadena}. Primero, se define una variable \texttt{cadena\_original} con el valor "Hola, mundo!". Luego, se llama a la función \texttt{invertir\_cadena} con \texttt{cadena\_original} como argumento y se asigna el resultado a la variable \texttt{cadena\_invertida}. Finalmente, se imprime el valor de \texttt{cadena\_invertida}.
+
+El código ilustra cómo se puede invertir una cadena de caracteres utilizando un enfoque iterativo. La técnica empleada es simple y eficaz: iterar a través de cada carácter de la cadena original y anteponerlo a la cadena invertida. Este enfoque garantiza que el primer carácter de la cadena original se convierta en el último carácter de la cadena invertida, y así sucesivamente.
+
+Este método es eficiente en términos de comprensión y es fácilmente adaptable para cualquier cadena de caracteres. La función \texttt{invertir\_cadena} no depende de la longitud de la cadena, por lo que puede manejar cadenas de cualquier tamaño, limitadas solo por la memoria disponible en el sistema.
+
+Además, este código destaca el uso de conceptos básicos de programación como la iteración y la manipulación de cadenas, proporcionando una solución clara y concisa para el problema de invertir una cadena. El enfoque iterativo utilizado aquí es particularmente útil en situaciones donde la recursión puede no ser la opción más adecuada debido a limitaciones de profundidad de recursión en algunos lenguajes de programación.
+
+
+
+\subsection{Parte 1-Diccionarios}
+
+En esta sección se presenta un código en Python que gestiona una agenda telefónica utilizando un diccionario. El programa permite agregar, eliminar, buscar y mostrar contactos con sus respectivos números de teléfono. A continuación se describe y explica cada parte del código.
+
+\begin{verbatim}
+agendaTelefonica = {}
+\end{verbatim}
+
+Se inicializa un diccionario vacío llamado \texttt{agendaTelefonica}. Este diccionario almacenará los nombres de los contactos como claves y sus números de teléfono como valores.
+
+\begin{verbatim}
+def agregar(nombre, telefono):
+    agendaTelefonica[nombre] = telefono
+    print(f"{nombre} añadido, número de 
+    teléfono: {telefono}.")
+\end{verbatim}
+
+Se define una función \texttt{agregar} que toma dos parámetros: \texttt{nombre} y \texttt{telefono}. La función añade un nuevo contacto a \texttt{agendaTelefonica} asignando el número de teléfono al nombre proporcionado y luego imprime un mensaje de confirmación.
+
+\begin{verbatim}
+def eliminar(nombre):
+    if nombre in agendaTelefonica:
+        del agendaTelefonica[nombre]
+        print(f"Teléfono de {nombre} 
+        eliminado")
+    else:
+        print(f"No se encontró al contacto")
+\end{verbatim}
+
+Se define una función \texttt{eliminar} que toma un parámetro \texttt{nombre}. La función verifica si el nombre existe en \texttt{agendaTelefonica}. Si existe, elimina el contacto y muestra un mensaje de confirmación; de lo contrario, informa que el contacto no se encontró.
+
+\begin{verbatim}
+def buscar(nombre):
+    if nombre in agendaTelefonica:
+        print(f"{nombre}: {agendaTelefonica
+        [nombre]}")
+    else:
+        print(f"No se encontró al contacto")
+\end{verbatim}
+
+Se define una función \texttt{buscar} que toma un parámetro \texttt{nombre}. La función verifica si el nombre existe en \texttt{agendaTelefonica}. Si existe, imprime el nombre y su número de teléfono asociado; de lo contrario, informa que el contacto no se encontró.
+
+\begin{verbatim}
+def mostrar():
+    print("Agenda telefónica:")
+    for nombre, telefono in 
+    agendaTelefonica.items():
+        print(f"{nombre}: {telefono}")
+\end{verbatim}
+
+Se define una función \texttt{mostrar} que no toma parámetros. La función imprime todos los contactos almacenados en \texttt{agendaTelefonica}. Utiliza un bucle \texttt{for} para iterar a través de los elementos del diccionario, imprimiendo cada nombre y su número de teléfono asociado.
+
+\begin{verbatim}
+agregar("Carmen", 941742631)
+agregar("Theodoro", 946233559)
+buscar("Theodoro")
+mostrar()
+eliminar("Carmen")
+buscar("Carmen")
+mostrar()
+\end{verbatim}
+
+Se ejemplifica el uso de las funciones definidas anteriormente. Primero, se añaden dos contactos: "Carmen" con el número 941742631 y "Theodoro" con el número 946233559. Luego, se busca el contacto "Theodoro" y se muestra toda la agenda telefónica. A continuación, se elimina el contacto "Carmen" y se intenta buscar nuevamente, mostrando que ya no está en la agenda. Finalmente, se muestra la agenda actualizada.
+
+Este código ilustra cómo se puede gestionar una agenda telefónica utilizando un diccionario en Python. Los diccionarios son estructuras de datos muy útiles para almacenar y manipular pares clave-valor de manera eficiente. El código también demuestra el uso de funciones para organizar y modularizar las operaciones, haciendo que la gestión de los contactos sea clara y estructurada. El enfoque presentado permite realizar operaciones básicas de CRUD (Crear, Leer, Actualizar y Eliminar) de manera sencilla y efectiva.
+
+
+\subsection{Parte 1-Clases}
+
+En esta sección se presenta un código en Python que define una clase \texttt{Persona} y crea instancias de dicha clase. Cada instancia representa una persona con un nombre y una edad. Además, la clase incluye un método para mostrar la información de la persona. A continuación se describe y explica cada parte del código.
+
+\begin{verbatim}
+class Persona:
+    def __init__(self, nombre, edad):
+        self.nombre = nombre
+        self.edad = edad
+
+    def mostrar(self):
+        print(f"Nombre: {self.nombre} -
+        Edad: {self.edad}")
+\end{verbatim}
+
+Se define una clase llamada \texttt{Persona}. Dentro de esta clase, se define el método \texttt{\_\_init\_\_}, que es el constructor de la clase. Este método toma dos parámetros adicionales a \texttt{self}: \texttt{nombre} y \texttt{edad}. El constructor inicializa los atributos \texttt{nombre} y \texttt{edad} de la instancia con los valores proporcionados.
+
+También se define un método \texttt{mostrar} que imprime el nombre y la edad de la persona en el formato "Nombre: \texttt{self.nombre} - Edad: \texttt{self.edad}".
+
+\begin{verbatim}
+persona1 = Persona("Arom", 18)
+persona2 = Persona("Paul", 20)
+persona3 = Persona("Andrea", 20)
+\end{verbatim}
+
+Se crean tres instancias de la clase \texttt{Persona} con los nombres y edades especificados. La variable \texttt{persona1} es una instancia de \texttt{Persona} con el nombre "Arom" y la edad 18. De manera similar, \texttt{persona2} y \texttt{persona3} son instancias con los nombres "Paul" y "Andrea", y ambas con la edad 20.
+
+\begin{verbatim}
+persona1.mostrar()
+persona2.mostrar()
+persona3.mostrar()
+\end{verbatim}
+
+Se llama al método \texttt{mostrar} para cada una de las instancias creadas. Esto imprime la información de cada persona en la consola.
+
+El uso de clases y objetos en Python permite organizar el código de manera modular y reutilizable. La definición de la clase \texttt{Persona} encapsula los datos y las funciones relacionadas en una sola entidad. Este enfoque es fundamental en la programación orientada a objetos (POO), donde los objetos son instancias de clases y representan entidades del mundo real o conceptos abstractos.
+
+En este código, se demuestra cómo definir una clase con un constructor y métodos, cómo crear instancias de la clase, y cómo interactuar con esas instancias llamando a sus métodos. La POO es una herramienta poderosa en la programación que facilita la creación de programas más grandes y manejables mediante la encapsulación, la herencia y el polimorfismo.
+
+El código presentado es un ejemplo básico pero completo de cómo utilizar la POO en Python, proporcionando una base sólida para aplicaciones más complejas que requieran la modelación de entidades y sus interacciones.
+
+
+\subsection{Parte 1-Archivos}
+
+En esta sección se presenta un código en Python que escribe varias líneas de texto en un archivo. El programa utiliza la estructura \texttt{with open} para manejar el archivo, asegurando una correcta apertura y cierre del mismo. A continuación se describe y explica cada parte del código.
+
+\begin{verbatim}
+with open('ejemplo.txt', 'w') as archivo:
+    archivo.write('Este es el grupo\n')
+    archivo.write('para la práctica 5 de\n')
+    archivo.write('Fundamentos de 
+    Programación')
+\end{verbatim}
+
+Se utiliza la estructura \texttt{with open} para abrir (o crear si no existe) un archivo llamado \texttt{ejemplo.txt} en modo de escritura ('w'). La estructura \texttt{with} asegura que el archivo se cierre correctamente después de que se ejecuten las operaciones dentro de su bloque, incluso si ocurre una excepción.
+
+Dentro del bloque \texttt{with}, se llama al método \texttt{write} del objeto archivo para escribir texto en el archivo. Cada llamada a \texttt{write} agrega una línea de texto al archivo. La secuencia de operaciones es la siguiente:
+
+1. \texttt{archivo.write('Este es el grupo\n')} escribe la línea "Este es el grupo" seguida de un salto de línea (\texttt{\n}).
+2. \texttt{archivo.write('para la práctica 5 de\n')} escribe la línea "para la práctica 5 de" seguida de un salto de línea.
+3. \texttt{archivo.write('Fundamentos de Programación')} escribe la línea "Fundamentos de Programación".
+
+El uso del modo 'w' asegura que si \texttt{ejemplo.txt} ya existe, su contenido será sobrescrito. Si se quisiera añadir contenido sin sobrescribir el existente, se debería utilizar el modo 'a' (apéndice).
+
+Este código demuestra cómo manejar archivos en Python de manera segura y eficiente. La estructura \texttt{with} es preferida sobre el uso de \texttt{open} y \texttt{close} debido a su capacidad para manejar automáticamente el cierre del archivo, lo cual es crucial para evitar fugas de recursos y asegurar que los datos se escriban correctamente.
+
+Además, este ejemplo ilustra la simplicidad y legibilidad del manejo de archivos en Python, permitiendo al programador enfocarse en la lógica del programa sin preocuparse por detalles de bajo nivel relacionados con la gestión de recursos. La escritura en archivos es una operación fundamental en muchos programas, utilizada para persistir datos, generar reportes, y más.
+
+
+\subsection{Parte 2}
+
+El siguiente fragmento de código en Python implementa un sencillo juego de adivinanza de números. El programa genera un número aleatorio entre 1 y 100 y pide al usuario que lo adivine. A continuación, se describe y explica el funcionamiento de cada parte del código:
+
+\begin{verbatim}
+import random
+\end{verbatim}
+
+La primera línea importa el módulo \texttt{random}, que permite generar números aleatorios. Este módulo es esencial para el funcionamiento del juego, ya que el número a adivinar será generado de forma aleatoria.
+
+\begin{verbatim}
+num = random.randint(1, 100)  
+numintentos = 0  
+\end{verbatim}
+
+Se genera un número aleatorio entre 1 y 100 utilizando la función \texttt{randint} del módulo \texttt{random}, y se asigna a la variable \texttt{num}. También se inicializa la variable \texttt{numintentos} a 0, que servirá para contar el número de intentos realizados por el usuario.
+
+\begin{verbatim}
+print("Adivine un número entero entre 1 y
+100")  
+\end{verbatim}
+
+Se imprime un mensaje en la consola para informar al usuario sobre el objetivo del juego.
+
+\begin{verbatim}
+while True: 
+  try:  
+    intento = int(input("Ingrese el número: 
+    "))  
+    numintentos += 1 
+    if intento < num:  
+      print("El número es mayor que el 
+      ingresado")  
+    elif intento > num: 
+      print("El número es menor que el 
+      ingresado")  
+    else:  
+      print(f"Felicidades, adivinaste el 
+      número {num} en {numintentos} 
+      intentos.")  
+      break  
+  except ValueError:  
+    print("Entrada inválida, ingrese un 
+    número entero") 
+\end{verbatim}
+
+El núcleo del programa es un bucle \texttt{while} que continúa ejecutándose hasta que el usuario adivina correctamente el número. Dentro del bucle, se utiliza un bloque \texttt{try-except} para manejar posibles errores de entrada del usuario.
+
+En el bloque \texttt{try}, se lee la entrada del usuario con la función \texttt{input} y se convierte a un entero con \texttt{int}. Si la conversión tiene éxito, el contador de intentos (\texttt{numintentos}) se incrementa en uno. Luego, el programa compara el número ingresado por el usuario (\texttt{intento}) con el número a adivinar (\texttt{num}). Si el número ingresado es menor que \texttt{num}, se informa al usuario que el número a adivinar es mayor. Si el número ingresado es mayor que \texttt{num}, se informa que el número a adivinar es menor. Si el usuario adivina el número correctamente, se imprime un mensaje de felicitación indicando el número de intentos realizados y se rompe el bucle con \texttt{break}.
+
+En el bloque \texttt{except}, se captura una excepción de tipo \texttt{ValueError}, que ocurre si el usuario ingresa algo que no puede convertirse a un número entero. En ese caso, se imprime un mensaje de error indicando que la entrada no es válida y el bucle continúa.
+
+Este código es un ejemplo sencillo de cómo se pueden utilizar las estructuras de control de flujo, manejo de excepciones y funciones integradas de Python para crear una aplicación interactiva. Además, ilustra el uso del módulo \texttt{random} para generar datos aleatorios y cómo manejar la interacción con el usuario de manera robusta.
+
+
+\vspace{0.2cm}
+
+
+
+
+\subsection{Parte 3}
+
+En esta sección se presenta un código en Python que realiza un análisis de datos utilizando las bibliotecas \texttt{pandas}, \texttt{numpy}, y \texttt{matplotlib}. El programa carga un conjunto de datos desde un archivo CSV, calcula estadísticas básicas, y genera un gráfico de dispersión. A continuación se describe y explica cada parte del código.
+
+\begin{verbatim}
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+\end{verbatim}
+
+Se importan las bibliotecas necesarias: \texttt{pandas} para la manipulación de datos, \texttt{matplotlib.pyplot} para la visualización, y \texttt{numpy} para cálculos numéricos.
+
+\begin{verbatim}
+df = pd.read_csv('sample_data/mtcars.csv')
+print(df.head())
+\end{verbatim}
+
+Se carga un archivo CSV llamado mtcars.csv en un DataFrame de \texttt{pandas} utilizando \texttt{pd.read\_csv}.
+El método \texttt{read\_csv} lee el archivo y lo almacena en la variable \texttt{df}. Luego, se imprime las primeras cinco filas del DataFrame para inspeccionar los datos utilizando \texttt{df.head()}.
+
+\begin{verbatim}
+columna1 = 'hp'
+media_hp = np.mean(df[columna1])
+desviacion_hp = np.std(df[columna1])
+print(f"La media de {columna1} es {media_hp}
+")
+print(f"La desviación estándar de {columna1}
+es {desviacion_hp}")
+\end{verbatim}
+
+Se define la variable \texttt{columna1} con el valor 'hp' que representa la columna de caballos de fuerza (horsepower). Se calculan la media y la desviación estándar de esta columna utilizando \texttt{np.mean} y \texttt{np.std}, respectivamente. Los resultados se imprimen en la consola.
+
+\begin{verbatim}
+columna2 = 'cyl'
+media_cyl = np.mean(df[columna2])
+desviacion_cyl = np.std(df[columna2])
+print(f"La media de {columna2} es {media_cyl}
+")
+print(f"La desviación estándar de {columna2}
+es {desviacion_cyl}")
+\end{verbatim}
+
+Se define la variable \texttt{columna2} con el valor 'cyl' que representa la columna de cilindros. De manera similar, se calculan la media y la desviación estándar de esta columna y se imprimen los resultados en la consola.
+
+\begin{verbatim}
+plt.scatter(df[columna2], df[columna1], s=8,
+color='blue')
+plt.title(f'Gráfico de dispersión de 
+{columna2} por {columna1}')
+plt.xlabel(columna2)
+plt.ylabel(columna1)
+plt.tight_layout()
+plt.show()
+\end{verbatim}
+
+Se genera un gráfico de dispersión utilizando \texttt{plt.scatter}. En este gráfico, \texttt{columna2} (cilindros) se coloca en el eje x y \texttt{columna1} (caballos de fuerza) en el eje y. Los puntos del gráfico se muestran en color azul y con un tamaño de 8 (\texttt{s=8}). Se añade un título al gráfico, así como etiquetas a los ejes x e y. Finalmente, \texttt{plt.tight\_layout()} ajusta el espaciado del gráfico y \texttt{plt.show()} muestra el gráfico.
+
+Este código demuestra cómo cargar datos desde un archivo CSV, realizar cálculos estadísticos básicos y generar visualizaciones con \texttt{pandas}, \texttt{numpy}, y \texttt{matplotlib}. La combinación de estas bibliotecas permite realizar un análisis de datos completo y eficiente en Python. El gráfico de dispersión generado proporciona una visualización clara de la relación entre dos variables, facilitando la interpretación de los datos y la identificación de posibles patrones o tendencias.
+
+
+
+
+\vspace{0.2cm}
+
+
+
+
+
+
+	
+
+
+\section{Conclusiones}
+
+En este informe cubre varios aspectos fundamentales de la programación en Python, abarcando desde la manipulación de cadenas hasta el análisis de datos y la visualización. A lo largo del informe, se han presentado ejemplos prácticos que ilustran el uso de diversas funcionalidades y bibliotecas de Python para resolver problemas específicos. Las conclusiones generales de este trabajo son las siguientes:
+
+En primer lugar, se ha demostrado cómo Python facilita la manipulación de cadenas de caracteres a través de ejemplos como la inversión de una cadena. La simplicidad y legibilidad del código en Python permiten implementar soluciones efectivas y comprensibles incluso para tareas que requieren una manipulación detallada de los datos.
+
+En segundo lugar, se ha destacado la importancia de las estructuras de datos en Python, como los diccionarios, a través de la implementación de una agenda telefónica. Los diccionarios proporcionan una forma eficiente de almacenar y acceder a pares clave-valor, lo cual es esencial para muchos tipos de aplicaciones.
+
+Asimismo, se ha mostrado el poder de la programación orientada a objetos (POO) en Python mediante la definición de clases y la creación de instancias. El ejemplo de la clase \texttt{Persona} ilustra cómo la POO permite modelar entidades del mundo real de manera intuitiva, organizando el código de forma modular y reutilizable.
+
+Además, el uso de archivos en Python se ha ejemplificado con la escritura en un archivo de texto. La estructura \texttt{with open} facilita el manejo seguro de archivos, asegurando su correcta apertura y cierre, lo que es crucial para la integridad de los datos.
+
+Finalmente, se ha explorado el análisis de datos y la visualización utilizando las bibliotecas \texttt{pandas}, \texttt{numpy}, y \texttt{matplotlib}. Estos ejemplos han demostrado cómo Python puede manejar grandes conjuntos de datos, calcular estadísticas básicas y generar visualizaciones que ayudan a interpretar y comunicar los resultados de manera efectiva.
+
+En comparación con otros lenguajes de programación como C++, Python ofrece una sintaxis más sencilla y una biblioteca estándar más rica, lo que reduce significativamente el tiempo de desarrollo. Las capacidades de Python para la manipulación de datos y la visualización son particularmente destacables, facilitando el trabajo de los desarrolladores en áreas como el análisis de datos y la ciencia de datos.
+
+En resumen, este informe ha proporcionado una visión integral de las capacidades de Python a través de ejemplos prácticos y concretos. La versatilidad de Python y su extensa biblioteca de módulos lo convierten en una herramienta poderosa para una amplia variedad de aplicaciones, desde la programación básica hasta el análisis avanzado de datos.
+
+
+
+\end{document}
